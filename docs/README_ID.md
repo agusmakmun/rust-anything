@@ -8,8 +8,8 @@
 <p align="center"><sub>Terjemahan ini dikelola oleh komunitas dan bisa tertinggal dari <a href="../README.md">README berbahasa Inggris</a>.</sub></p>
 
 <p align="center"><b>Tulis ulang aplikasi Anda dalam Rust, dan buktikan perilakunya tetap sama.</b><br>
-Arahkan ke aplikasi Anda: ia merekam apa yang dilakukan aplikasi asli, agen coding Anda menulis versi Rust sepotong demi sepotong,<br>
-dan setiap potongan diperiksa terhadap rekaman itu sebelum lanjut. Ia tidak menerjemahkan kode; ia membuktikan hasil tulis ulangnya.</p>
+Arahkan ke aplikasi Anda: rust-anything merekam apa yang dilakukan aplikasi asli, agen coding Anda menulis versi Rust sepotong demi sepotong,<br>
+dan setiap potongan diperiksa terhadap rekaman itu sebelum lanjut. rust-anything tidak menerjemahkan kode; alat ini membuktikan hasil tulis ulangnya.</p>
 
 <p align="center">
   <img src="https://img.shields.io/github/languages/top/erkamyaman/rust-anything?logo=rust&label=Rust&color=CE422B" alt="Rust share of the code">
@@ -33,9 +33,9 @@ dan setiap potongan diperiksa terhadap rekaman itu sebelum lanjut. Ia tidak mene
 
 <p align="center"><b><a href="#mulai-cepat">Instal</a></b> · <a href="https://github.com/erkamyaman/rust-anything/releases">Rilis</a> · <a href="#mulai-cepat">Plugin Claude Code</a> · <a href="https://registry.modelcontextprotocol.io/v0.1/servers?search=rust-anything">MCP Registry</a> · <a href="real-world.md">Port di dunia nyata</a> · <a href="faq.md#faq">FAQ</a><br>
 <sub><a href="#bahasa">Bahasa</a> · <a href="how-it-works.md#how-it-works">Cara kerjanya</a> · <a href="whole-apps.md#port-a-whole-app">Aplikasi utuh</a> · <a href="#sponsor">Sponsor</a> · <a href="../LICENSE">MIT</a></sub><br>
-Dibuat di Türkiye 🇹🇷 oleh <a href="https://github.com/erkamyaman">erKam Yaman</a> · <a href="https://github.com/sponsors/erkamyaman">❤️ Jadi sponsor saya</a> · Disponsori oleh <a href="https://coderabbit.link/erkamyaman"><img src="assets/brands/coderabbit.png" width="22" height="22" align="absmiddle" alt=""> <b>CodeRabbit</b></a></p>
+Dibuat di Türkiye 🇹🇷 oleh <a href="https://github.com/erkamyaman">erKam Yaman</a> · <a href="https://github.com/sponsors/erkamyaman">❤️ Sponsori saya</a> · Disponsori oleh <a href="https://coderabbit.link/erkamyaman"><img src="assets/brands/coderabbit.png" width="22" height="22" align="absmiddle" alt=""> <b>CodeRabbit</b></a></p>
 
-<p align="center">Juga dari saya: <a href="https://github.com/erkamyaman/safe-anything"><b>safe-anything</b></a>, pemindai keamanan 100% Rust untuk kode, secret, konfigurasi, dan setup agen AI. Temukan celahnya sebelum orang lain menemukannya.</p>
+<p align="center">Proyek lain dari pembuatnya: <a href="https://github.com/erkamyaman/safe-anything"><b>safe-anything</b></a>, pemindai keamanan 100% Rust untuk kode, secret, konfigurasi, dan setup agen AI. Temukan celahnya sebelum orang lain menemukannya.</p>
 
 <p align="center">Baru di 2.0: <a href="real-world.md#prettier">Prettier, di-port ke Rust</a>. 19x lebih cepat · 15.861 dari 17.224 run terekam sepenuhnya di Rust · setiap run identik byte demi byte</p>
 
@@ -62,7 +62,7 @@ Dibuat di Türkiye 🇹🇷 oleh <a href="https://github.com/erkamyaman">erKam Y
       <code>diff</code> memutar ulang setiap kasus terekam terhadap Rust, dan tidak ada yang dirilis sampai semuanya cocok dan <code>gate</code> lolos.
     </td>
     <td width="25%" valign="top">
-      <b>Angkat</b><br>
+      <b>Lift</b><br>
       Saat replay lolos tanpa fallback dan setiap unit lolos gate, <code>app lift</code> menjadikannya aplikasi Rust murni. Kode asli tidak pernah disentuh.
     </td>
   </tr>
@@ -72,26 +72,26 @@ Dibuat di Türkiye 🇹🇷 oleh <a href="https://github.com/erkamyaman">erKam Y
 yang dilakukan aplikasi Node.js (TypeScript/JavaScript), Python, C, Go, Ruby, Java, atau Kotlin Anda
 hari ini, lalu memeriksa setiap potongan hasil tulis ulang Rust terhadap rekaman itu sebelum lanjut,
 sampai aplikasinya menjadi Rust murni. CLI, server HTTP, dan library; agen coding Anda (atau Anda
-sendiri) yang menulis Rust-nya. Ia dibangun di atas [napi-rs](https://github.com/napi-rs/napi-rs),
+sendiri) yang menulis Rust-nya. rust-anything dibangun di atas [napi-rs](https://github.com/napi-rs/napi-rs),
 [PyO3](https://github.com/PyO3/pyo3), dan [wasm-bindgen](https://github.com/wasm-bindgen/wasm-bindgen),
 yang membawa panggilan antara bahasa Anda dan Rust; rust-anything memutuskan apa yang dipindahkan dan
-membuktikan hasilnya cocok. Ia hanya bisa menangkap apa yang dicakup rekaman: lihat
+membuktikan hasilnya cocok. Alat ini hanya bisa menangkap apa yang dicakup rekaman: lihat
 [What it can't catch](how-it-works.md#what-it-cant-catch). Tool dan server utuh, atau hanya bagian
-yang lambat, satu hot path setiap kali:
+yang lambat, satu hot path demi satu:
 
 | Proyek nyata, output sama dengan aslinya | Asli | Dengan rust-anything |
 | --- | ---: | ---: |
 | [Prettier](real-world.md#prettier) 3.6.2, 2.360 file JS/TS dari command line | 128,6 s | **6,9 s: 19x lebih cepat** |
 | Prettier, 6.305 file Markdown dari command line | 352 s | **22,5 s: 15,6x lebih cepat** |
 | [json-server](real-world.md#json-server), server Node utuh: memori saat idle | 74 MB | **3,5 MB**, satu binary 5,3 MB |
-| json-server, dari start sampai respons pertama | 79 sampai 85 ms | **8 sampai 10 ms** |
+| json-server, dari mulai jalan sampai respons pertama | 79 sampai 85 ms | **8 sampai 10 ms** |
 | Pencarian [Fuse.js](real-world.md#fusejs) atas 50.000 string, per query | 91,2 ms | **2,8 ms: 32x lebih cepat** |
 
 Prettier: 15.861 dari 17.224 run terekam diformat sepenuhnya di Rust di 10 bahasa (JavaScript,
 TypeScript, JSX, JSON, GraphQL, YAML, Markdown, CSS, SCSS, Less), dan ke-17.224 run cocok dengan
 Prettier byte demi byte, karena apa pun yang belum di-port akan kembali (fallback) ke Prettier.
-json-server: 514/514 kasus HTTP terekam cocok pada binary Rust murni. Diukur di Apple M4, dua kali
-run masing-masing, setiap output dibandingkan sebelum pengukuran waktu ([detail](real-world.md)).
+json-server: 514/514 kasus HTTP terekam cocok pada binary Rust murni. Diukur di Apple M4, masing-masing
+dijalankan dua kali, setiap output dibandingkan sebelum pengukuran waktu ([detail](real-world.md)).
 Memanggil Rust sekali per fungsi kecil biasanya *lebih lambat* daripada JIT; rust-anything mencari
 loop yang layak dipindahkan, lalu memindahkannya. Dibandingkan C, keuntungannya adalah keamanan,
 bukan kecepatan: [libavutil milik ffmpeg](real-world.md#ffmpeg) yang di-port ke Rust cocok dengan
@@ -100,17 +100,17 @@ lebih cepat, 16 lebih lambat 3 sampai 40%).
 
 ## Hanya bagian yang lambat
 
-Anda tidak harus mem-port seluruh aplikasi. Arahkan `go` ke perintah yang terlalu lambat, dan ia
+Anda tidak harus mem-port seluruh aplikasi. Arahkan `go` ke perintah yang terlalu lambat, dan `go`
 mem-port satu fungsi yang memakan waktu:
 
 ```sh
 rust-anything go --agent claude -- python3 app.py
 ```
 
-Ia memprofil run tersebut, memilih fungsi terluar yang layak dipindahkan (loop-nya, bukan panggilan
+`go` memprofil run tersebut, memilih fungsi terluar yang layak dipindahkan (loop-nya, bukan panggilan
 kecil di dalamnya, di-batch bila profil menyarankannya), merekamnya pada input yang dihasilkan
 ditambah panggilan dari run Anda, lalu menyerahkan `src/port.rs` ke agen Anda (`claude`, `codex`,
-atau perintah apa pun yang membaca prompt dari stdin; tanpa `--agent` ia menulis `TASK.md` untuk
+atau perintah apa pun yang membaca prompt dari stdin; tanpa `--agent` `go` menulis `TASK.md` untuk
 Anda dan berhenti). Fungsi itu hanya diaktifkan saat setiap kasus terekam cocok dan `gate` lolos.
 Lalu:
 
@@ -119,7 +119,7 @@ rust-anything report rust/dedupe-rs     # REPORT.md dan card.svg untuk pull requ
 rust-anything disable rust/dedupe-rs    # kembali ke aslinya, byte demi byte
 ```
 
-Baris [Fuse.js](real-world.md#fusejs) di atas berbentuk seperti ini: skor Fuse untuk satu string,
+Baris [Fuse.js](real-world.md#fusejs) di atas mengikuti pola ini: skor Fuse untuk satu string,
 di-batch atas seluruh daftar, dipindahkan ke Rust sementara object key, extended search, dan sisanya
 tetap di JavaScript, dari 91,2 ms menjadi 2,8 ms per query atas 50.000 string. Coba `go` pada
 [`tests/fixtures/go-fuzzy`](../tests/fixtures/go-fuzzy), dedupe Python 20 baris. Semua cara untuk
@@ -128,7 +128,7 @@ mengaktifkan dan menonaktifkan port: [Switch a port on and off](how-it-works.md#
 <p align="center">
   <img src="assets/json-server.gif" alt="json-server as a Node server and as one Rust binary: memory at idle 74 MB and 3.5 MB, start to first response 79 to 85 ms and 8 to 10 ms, and 514 of 514 recorded HTTP cases match." width="820">
   <br>
-  <sub>json-server, server Node utuh, diangkat menjadi binary Rust murni (Apple M4). <a href="real-world.md#json-server">Cara pengukurannya</a>.</sub>
+  <sub>json-server, server Node utuh, di-lift menjadi binary Rust murni (Apple M4). <a href="real-world.md#json-server">Cara pengukurannya</a>.</sub>
 </p>
 
 > rust-anything adalah proyek independen, tidak berafiliasi dengan atau didukung oleh Rust Project
@@ -138,13 +138,13 @@ mengaktifkan dan menonaktifkan port: [Switch a port on and off](how-it-works.md#
 > `record` dan `app record` menjalankan kode asli Anda, memanggil setiap fungsi (atau seluruh
 > aplikasi) dengan banyak input yang dihasilkan, dan `app record` menjalankan setiap kasus dua kali.
 > `diff`, `gate`, dan `app replay` menjalankan kasus yang sama lagi, pada port atau aslinya. Kode
-> yang menulis file, berbicara dengan database, atau memanggil jaringan melakukannya sekali per
+> yang menulis file, mengakses database, atau memanggil jaringan melakukannya sekali per
 > kasus. Jalankan pada salinan proyek, dengan database uji dan tanpa kredensial produksi di
 > environment.
 
 ## Instal port-nya
 
-Port ESLint adalah perintah npm. Ia menjalankan port Rust untuk apa yang dicakupnya dan ESLint
+Port ESLint adalah perintah npm. Perintah ini menjalankan port Rust untuk apa yang dicakupnya dan ESLint
 10.15.0, yang dipatok sebagai dependensi, untuk sisanya, sehingga outputnya tetap milik ESLint:
 
 ```sh
@@ -239,13 +239,13 @@ Untuk menghubungkan OpenCode secara manual, taruh server di `~/.config/opencode/
 Atau jalankan langkah-langkahnya sendiri:
 
 ```sh
-rust-anything profile . -- node bench.mjs              # apa yang panas, dan siapa yang memanggilnya
+rust-anything profile . -- node bench.mjs              # bagian mana yang hot, dan siapa yang memanggilnya
 rust-anything bridge . src/fuzzy.ts --batch fuzzyScore:text
 # tulis src/port.rs (atau biarkan agen Anda), lalu:
 rust-anything record rust/fuzzy-rs && rust-anything build rust/fuzzy-rs
 rust-anything diff rust/fuzzy-rs                       # setiap kasus terekam harus cocok
 rust-anything fuzz rust/fuzzy-rs --time 60 --keep      # input baru: apa yang terlewat oleh rekaman
-rust-anything bench rust/fuzzy-rs                      # lebih cepat? putusannya yang menjawab
+rust-anything bench rust/fuzzy-rs                      # lebih cepat? hasil verdict-nya yang menjawab
 rust-anything gate rust/fuzzy-rs                       # selesai berarti ini lolos
 ```
 
@@ -280,7 +280,7 @@ mengirim email dua kali akan gagal:
 | C# | file atau folder berisi method `public static` | dispatcher JSON di atas P/Invoke, dalam class `<namespace>.Rust` dengan method asli | driver reflection yang dihasilkan, dikompilasi bersama sumber proyek oleh `dotnet build`; aplikasi utuh dengan `app record`, `app replay`, dan front door, untuk CLI dan server ASP.NET (`dotnet <app>.dll`) |
 
 Setiap bahasa kecuali C, PHP, C#, dan PowerShell juga mendapat class batch (`--batch`): item
-menyeberang sekali dan tetap di Rust, dan setiap panggilan berjalan atas semuanya di semua core.
+dikirim ke Rust sekali dan tetap di sana, dan setiap panggilan berjalan atas semuanya di semua core.
 
 Bahasa dideteksi dari repositori (`go.mod`, `pom.xml`, `build.gradle`/`build.gradle.kts`, sebuah
 `.csproj` atau `.sln`, `pyproject.toml`, `Gemfile`, `composer.json`, `package.json`, selain itu file
@@ -292,7 +292,7 @@ tipe yang dipakai sebagai angka disimpulkan sebagai angka.
 Untuk Android, `rust-anything build <crate> --profile android` mem-build library JNI yang sama
 dengan NDK untuk `arm64-v8a`, `armeabi-v7a`, dan `x86_64` (atau nilai `--abi` yang Anda berikan) dan
 menginstalnya ke `<crate>/jniLibs/<abi>/`; `--api` mengatur API level (minimal 26, yang dibutuhkan
-runtime Java yang dihasilkan). Ia menemukan NDK dari `ANDROID_NDK_HOME`/`ANDROID_NDK_ROOT` atau SDK,
+runtime Java yang dihasilkan). Perintah ini menemukan NDK dari `ANDROID_NDK_HOME`/`ANDROID_NDK_ROOT` atau SDK,
 membutuhkan target Rust (`rustup target add aarch64-linux-android armv7-linux-androideabi
 x86_64-linux-android`), me-link library 64-bit dengan page alignment 16 KB, dan memeriksa bahwa
 setiap entry point JNI diekspor. Gradle mencari di `src/main/jniLibs` secara default, jadi berikan
@@ -303,7 +303,7 @@ menarik hasilnya kembali sebagai `cases.jsonl` yang sama; `diff <crate> --profil
 ulangnya terhadap `.so` yang di-build untuk ABI perangkat. Keduanya membutuhkan `adb`, sebuah
 perangkat, `kotlinc`, SDK dengan build-tools dan sebuah platform, serta `--device <serial>` bila
 lebih dari satu perangkat terhubung. Profil ini mencakup unit logika: UI Activity/Compose/XML,
-lifecycle, dan class khusus SDK tetap di Kotlin, dan setiap panggilan menyeberangi JNI, jadi
+lifecycle, dan class khusus SDK tetap di Kotlin, dan setiap panggilan melewati JNI, jadi
 utamakan wrapper batch yang dihasilkan untuk hot loop. Di host, `record` dan `diff` tetap memakai
 JVM desktop.
 
@@ -313,7 +313,7 @@ dan CLI atau server PHP bisa direkam, diputar ulang, dan ditaruh di balik front 
 top-level sebuah unit dengan parameter skalar, string, list, dan assoc-array di-bridge melalui
 ekstensi FFI PHP (`php` dengan `ext-ffi`, aktif secara default untuk CLI): require
 `php/<crate>.php` yang dihasilkan sebagai pengganti file asli setelah `diff` lolos. Setiap panggilan
-menyeberang sebagai JSON, sekitar 1 µs, jadi `bench` menunjukkan fungsi kecil lebih lambat daripada
+dikirim sebagai JSON, sekitar 1 µs, jadi `bench` menunjukkan fungsi kecil lebih lambat daripada
 PHP; belum ada `shadow` untuk PHP ([issue #200](https://github.com/erkamyaman/rust-anything/issues/200)).
 
 C# bekerja dengan cara yang sama: `analyze` membaca proyek `.csproj` dan paket NuGet-nya (dipetakan
@@ -323,7 +323,7 @@ ASP.NET bisa direkam, diputar ulang, dan ditaruh di balik front door Rust. Metho
 sebuah unit dengan parameter skalar, string, array, list, dictionary, dan record atau class biasa
 di-bridge melalui P/Invoke (`dotnet` di PATH untuk record dan diff): panggil class
 `<namespace>.Rust` yang dihasilkan, atau beri alias dengan `using`, setelah `diff` lolos. Setiap
-panggilan menyeberang sebagai JSON, sekitar 1-3 µs, jadi `bench` menunjukkan method kecil lebih
+panggilan dikirim sebagai JSON, sekitar 1-3 µs, jadi `bench` menunjukkan method kecil lebih
 lambat daripada .NET; belum ada `shadow` untuk C# ([issue #200](https://github.com/erkamyaman/rust-anything/issues/200)).
 
 Untuk PowerShell, `analyze` membaca module `.psm1`, skrip `.ps1`, dan manifest `.psd1`
@@ -335,8 +335,8 @@ menandai apa yang dilakukan PowerShell secara berbeda: output implisit dan array
 `ps/<crate>.ps1` yang dihasilkan; filter, blok `begin`/`process`, input pipeline, `[scriptblock]`,
 `[ref]`, dan tipe .NET lainnya tetap di PowerShell beserta alasannya. Setelah `diff` lolos,
 `rust-anything enable <crate>` men-dot-source wrapper di akhir file asli. Setiap panggilan
-menyeberang sebagai JSON yang di-encode oleh kode PowerShell: sekitar 0,1 ms untuk beberapa skalar
-di Apple M4, lebih untuk array dan hashtable, jadi hanya fungsi yang bekerja lebih banyak dari itu
+dikirim sebagai JSON yang di-encode oleh kode PowerShell: sekitar 0,1 ms untuk beberapa skalar
+di Apple M4, lebih lama untuk array dan hashtable, jadi hanya fungsi yang bekerja lebih banyak dari itu
 per panggilan yang menjadi lebih cepat (`bench` mengukurnya untuk fungsi Anda). Kebanyakan
 PowerShell yang lambat dalam tool adalah start-up `pwsh` atau `powershell.exe` baru per perintah
 (0,24 sampai 0,45 s untuk `pwsh -NoProfile -c 1` di M4 yang sama), yang tidak bisa diperbaiki port
@@ -355,7 +355,7 @@ apa pun: biarkan satu shell tetap terbuka dan kirimkan perintah ke sana (lihat [
 ## Sponsor
 
 <p align="center">
-  <a href="https://github.com/erkamyaman/rust-anything">rust-anything</a> gratis dan open source. Jika ia membantu pekerjaan Anda, mohon pertimbangkan untuk mensponsorinya.<br>
+  <a href="https://github.com/erkamyaman/rust-anything">rust-anything</a> gratis dan open source. Jika alat ini membantu pekerjaan Anda, mohon pertimbangkan untuk mensponsorinya.<br>
   Dukungan Anda menjaga pengembangan tetap berjalan.
 </p>
 
